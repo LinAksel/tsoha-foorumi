@@ -1,0 +1,1 @@
+CREATE TABLE testi (id SERIAL PRIMARY KEY, time TIMESTAMP, content TEXT);
