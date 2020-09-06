@@ -1,6 +1,6 @@
 # Keskustelufoorumi
 
-Projektin ideana on toteuttaa yksinkertainen keskustelufoorumi, jolla on teema (tämä päätetään myöhemmin), ja teeman ympärillä erilaisia aliotsikoita, joiden piirissä on mahdollista aloittaa uusia keskusteluja. Referenssinä esimerkiksi [kahvifoorumi Ristretto](https://www.ristretto.fi).
+Projektin ideana on toteuttaa yksinkertainen keskustelufoorumi, jolla on teema (tämä päätetään myöhemmin), ja teeman ympärillä erilaisia aliotsikoita, joiden piirissä on mahdollista aloittaa uusia keskusteluja. Referenssinä esimerkiksi [kahvifoorumi Ristretto](http://www.ristretto.fi/foorumi).
 
 ## Toteutettava toiminnallisuus
 
