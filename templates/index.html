@@ -1,4 +1,14 @@
-Tervetuloa!
-<p>
-    Olet sivuston {{ counter }}. käyttäjä
-</p>
+{% extends "layout.html" %}
+{% block title %}Etusivu{% endblock %}
+{% block content %}
+<a href="/new">
+    <i>Lisää aihe</i>
+</a>
+<hr>
+{% for topic in topics %}
+<h2>
+    <a href="{{ '/topic/%s'%topic[0]}}">{{ topic[1] }}</a>
+</h2>
+<hr>
+{% endfor %}
+{% endblock %}

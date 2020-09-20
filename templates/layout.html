@@ -1,0 +1,12 @@
+<!doctype html>
+<title>Foorumi - {% block title %}{% endblock %}</title>
+<a href="/">Etusivu</a>
+<hr>
+{% block content %}{% endblock %}
+<hr>
+{% if session.user_id %}
+Olet kirjautuneena sisään käyttäjänimellä <a href="{{ '/%s'%session['username']}}">{{ session['username'] }}</a>.
+<a href="/logout">Kirjaudu ulos</a>
+{% else %}
+<a href="/login">Kirjaudu sisään</a>
+{% endif %}
