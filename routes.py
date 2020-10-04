@@ -30,15 +30,15 @@ def topic(topic_id):
 
 @app.route("/topic/<int:topic_id>/newmessage")
 def newmessage(topic_id):
-    return render_template("newmessage")
+    return render_template("newmessage.html", t_id=topic_id)
 
 @app.route("/topic/<int:topic_id>/sendmessage", methods=["post"])
 def sendmessage(topic_id):
     content = request.form["content"]
     if messages.send(content, topic_id):
-        return redirect("/topic/{topic_id}")
+        return redirect("/")
     else:
-        return render_template("/")
+        return redirect("/")
 
 @app.route("/login", methods=["get","post"])
 def login():

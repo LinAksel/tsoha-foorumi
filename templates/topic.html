@@ -3,14 +3,12 @@
 {% block content %}
 <div class="content">
     <ul>
-        <a href="{{ '/topic/%s'%topic_id%'/newmessage%s'}}">
+        <a href="{{ '/topic/%s'%t_id}}/newmessage">
             <i>Lisää viesti</i>
         </a>
-        {% for message in messages %}
-        <li>
-            message[0]
-        </li>
-        {% endfor %}
-        {% endblock %}
     </ul>
+    {% for message in messages %}
+    {{ message[0] }}
+    {% endfor %}
 </div>
+{% endblock %}

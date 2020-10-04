@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block title %}Uusi aihe{% endblock %}
+{% block content %}
+<h2>{{ message }}</h2>
+<form action="{{ '/topic/%s'%t_id}}/sendmessage" method="post">
+    Aihe: <br>
+    <textarea name="content" rows="1" cols="40"></textarea>
+    <br>
+    <input type="submit" value="Luo aihe">
+</form>
+{% endblock %}
