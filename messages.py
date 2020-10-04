@@ -2,7 +2,7 @@ from db import db
 import users
 
 def get_message_list(topic_id):
-    sql = "SELECT M.content FROM messages M, messagetopics MT, topics T WHERE MT.topic_id = T.id AND MT.message_id = M.id AND T.id=:topic_id ORDER BY M.sent_at"
+    sql = "SELECT M.content, U.username FROM users U, messages M, messagetopics MT, topics T WHERE MT.topic_id = T.id AND MT.message_id = M.id AND T.id=:topic_id AND M.user_id = U.id ORDER BY M.sent_at DESC"
     result = db.session.execute(sql, {"topic_id":topic_id})
     return result.fetchall()
 

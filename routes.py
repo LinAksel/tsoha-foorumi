@@ -37,7 +37,7 @@ def newmessage(topic_id):
 def sendmessage(topic_id):
     content = request.form["content"]
     if messages.send(content, topic_id):
-        return redirect("/")
+        return redirect('/topic/' + str(topic_id))
     else:
         return redirect("/")
 

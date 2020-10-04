@@ -13,6 +13,7 @@
     color: var(--light-cyan);
     margin: auto;
     max-width: 90vw;
+    font-size: 1.5rem;
   }
 
   ul {
@@ -24,7 +25,6 @@
     background: var(--maize-crayola);
     border-radius: .5em;
     display  : grid;
-    font-size: 1.2vw;
   }
 
   a:visited, a {
@@ -63,8 +63,13 @@
   }
 
   .message {
+    font-style: italic;
     background: var(--red-crayola);
     padding: 1.5em 2em;
     border-radius: .5em;
     margin: .7em;
+  }
+
+  .message h3 {
+    font-style: normal;
   }
