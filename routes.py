@@ -14,10 +14,10 @@ def newtopic():
 @app.route("/sendtopic", methods=["post"])
 def sendtopic():
     content = request.form["content"]
-    if topics.send(content):
+    if topics.sendsuggestion(content):
         return redirect("/")
     else:
-        return render_template("newtopic.html", message="Aiheen luominen ei onnistunut!")
+        return render_template("newtopic.html", message="Aihetta on jo ehdotettu!")
 
 @app.route("/topic/<int:topic_id>")
 def topic(topic_id):

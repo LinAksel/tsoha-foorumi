@@ -17,3 +17,15 @@ def send(topic):
     except:
         return False
     return True
+
+def sendsuggestion(topic):
+    user_id = users.user_id()
+    if user_id == 0 or len(topic) > 30 or len(topic) == 0:
+        return False
+    try:
+        sql = "INSERT INTO topicideas (user_id, topic, sent_at) VALUES (:user_id, :topic, NOW())"
+        db.session.execute(sql, {"user_id":user_id, "topic":topic})
+        db.session.commit()
+    except:
+        return False
+    return True
