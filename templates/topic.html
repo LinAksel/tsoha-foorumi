@@ -2,11 +2,13 @@
 {% block title %}Etusivu{% endblock %}
 {% block content %}
 <h2>{{ name }}</h2>
+{% if t_id %}
 <ul>
     <a href="{{ '/topic/%s'%t_id}}/newmessage">
         <i>Lisää viesti</i>
     </a>
 </ul>
+{% endif %}
 {% for message in messages %}
 <div class="message">
     <h3>

@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}Uusi aihe{% endblock %}
 {% block content %}
+{% if session.user_id %}
 <h2>{{ message }}</h2>
 <form action="{{ '/topic/%s'%t_id}}/sendmessage" method="post">
     Viesti: <br>
@@ -8,4 +9,7 @@
     <br>
     <input type="submit" value="Luo aihe">
 </form>
+{% else %}
+<h2>Kirjaudu sisään nähdäksesi sisältöä!</h2>
+{% endif %}
 {% endblock %}
