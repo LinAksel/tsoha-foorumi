@@ -6,6 +6,14 @@ CREATE TABLE users
     password TEXT
 );
 
+CREATE TABLE messages
+(
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users,
+    content TEXT,
+    sent_at TIMESTAMP
+);
+
 CREATE TABLE userinfo
 (
     id SERIAL PRIMARY KEY,
@@ -16,9 +24,9 @@ CREATE TABLE userinfo
 
 CREATE TABLE favouritemessages
 (
-   id SERIAL PRIMARY KEY,
-   user_id INTEGER REFERENCES users,
-   message_id INTEGER REFERENCES messages
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users,
+    message_id INTEGER REFERENCES messages
 );
 
 CREATE TABLE topicideas
@@ -39,15 +47,7 @@ CREATE TABLE topics
 CREATE TABLE flags
 (
     id SERIAL PRIMARY KEY,
-    message_id REFERENCES messages,
-    user_id REFERENCES users,
-    content TEXT,
-    sent_at TIMESTAMP
-)
-
-CREATE TABLE messages
-(
-    id SERIAL PRIMARY KEY,
+    message_id INTEGER REFERENCES messages,
     user_id INTEGER REFERENCES users,
     content TEXT,
     sent_at TIMESTAMP

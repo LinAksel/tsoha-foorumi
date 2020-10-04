@@ -8,7 +8,7 @@ def index():
     return render_template("index.html", topics=list)
 
 @app.route("/newtopic")
-def newtopic(message):
+def newtopic():
     return render_template("newtopic.html")
 
 @app.route("/sendtopic", methods=["post"])

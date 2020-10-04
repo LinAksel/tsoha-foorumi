@@ -2,13 +2,11 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 <title>Foorumi - {% block title %}{% endblock %}</title>
 <h1>
-    <a href="/">Etusivu</a>
+    <a href="/">SIPSITYS</a>
 </h1>
 <hr>
 {% if session.user_id %}
-<h2>
-    Olet kirjautuneena sisään käyttäjänimellä <a href="{{ '/%s'%session['username']}}">{{ session['username'] }}</a>.
-</h2>
+Olet kirjautuneena sisään käyttäjänimellä <a href="{{ '/%s'%session['username']}}">{{ session['username'] }}</a>.
 <a href="/logout">Kirjaudu ulos</a>
 {% else %}
 <a href="/login">Kirjaudu sisään</a>

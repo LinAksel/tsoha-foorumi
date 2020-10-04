@@ -2,7 +2,7 @@ from db import db
 import users
 
 def get_topic_list():
-    sql = "SELECT id, topic, sent_at FROM topics ORDER BY sent_at DESC"
+    sql = "SELECT id, topic, sent_at FROM topics ORDER BY sent_at DESC LIMIT 10"
     result = db.session.execute(sql)
     return result.fetchall()
 
