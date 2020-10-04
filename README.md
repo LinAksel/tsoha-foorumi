@@ -1,15 +1,41 @@
-# Keskustelufoormi
+# Keskustelufoormi Sipsitys
 
 Helsingin yliopiston Tietokantasovellus-kurssin harjoitustyönä toteutettava ohjelma.
-
-## Dokumentaatio
-
-* [Määrittelydokumentti (ensipalautuksen kuvailu)](docs/maarittelydoc.md)
 
 ## Heroku
 
 * [Foorumi](https://tsoha2020-foorumi.herokuapp.com/)
 
-## Ensimmäinen välipalautus
+## Kuvaus
 
-Ohjelman perusrungon idea on nyt nähtävissä kurssimateriaalien esimerkkien avustamana luodulla pohjalla: aloitussivulla on aihealueita, joita vain kirjautuneet käyttäjät voivat luoda. Näitä klikkaamalla pääsee omalle topic-sivulle, jossa on tarkoituksena näyttää aihealueen viestit (tämä ominaisuus tulossa). Tähän mahdollisesti vielä yksi kerros lisää (aihealue->keskustelu->viesti, kun nyt vain aihealue->viestit). Lisäksi kyselyt voisivat olla hauska lisä viestien sekaan, jotta saadaan enemmän ominaisuuksia ja tietokantatauluja. Alakulmassa näytetään nyt myös kirjautuneen käyttäjän nimi, ja nimeä klikkamalla on mahdollista päästä profiilisivulle (tämäkin vielä tyhjä, mutta ohjaa oikein). Hyödynsin alussa paljon materiaalin ideoita, josta esimerkiksi ajatus kyselyihin tuli. Tarkoituksena on tietenkin lähteä näiden perusideoiden pohjalta rakentamaan täysin oma sovellus, mutta koska sekä HTML ja Python ovat itselleni vielä vieraita, on kivointa aloittaa hitasti muuttamaan ja tutkimaan näitä! Ensimmäisen palautuksen kommentti oli hyvä, koetan miettiä vielä lisää selkeästi erillisiä ominaisuuksia, joissa voisi hyödyntää uusia ja erilaisia tietokantatauluja (tulossa olevat käyttäjäprofiilit, viesti, kyselyt ja mahdollisesti kuvat laajentavat jo hieman?). Hieman harmittaa, että kiireen takia tämä palautus jäi vielä hyvin kauas lopullisesta työstä, mutta uskon ehtiväni kiriä seuraavilla viikoilla!
+Sipsitys on keskustelufoorumi, jossa sisäänkirjautunut käyttäjä voi selata eri aihepiireihin jaettuja (sipsiaiheisia) viestejä, sekä lisätä niitä.
+Uudenlaisia aihelisäyksiä on myös mahdollista ehdottaa admineille. Tulevaisuudessa käyttäjä voi myös lisätä tietoa itsestään profiilisivulle, valita viestin lähetyksen kohdalla kaikki siihen sopivat aiheet kerralla, ja liputtaa muiden käyttäjien viestejä.
+
+## Toiminnallisuudet 5.10.2020
+
+* Käyttäjä voi rekisteröityä sivulle tunnuksella, joka ei ole jo varattu
+* Käyttäjä voi kirjautua olemassaolevalla tunnuksella
+* Käyttäjä näkee kymmenen uusinta aihetta palkissa
+* Sisäänkirjautunut käyttäjä voi lukea aihealueiden viestejä
+* Sisäänkirjautunut käyttäjä voi lisätä aihealueelle viestin
+* Sisäänkirjautunut käyttäjä voi ehdottaa uutta aihetta
+
+## Puuttuva toiminnallisuus 5.10.2020 (todo ennen loppupalautusta)
+
+* Käyttäjä voi selata kaikkia aiheita
+* Käyttäjä voi nähdä profiilinsa
+* Käyttäjä voi muokata omaa viestiään
+* Käyttäjä voi poistaa oman viestinsä
+* Käyttäjä voi lisätä tietoa profiiliinsa, ja poistaa sitä
+* Käyttäjä näkee palkissa kymmenen eniten viestejä sisältävää aihetta (tällä hetkellä kymmenen uusinta)
+* Käyttäjä voi tallentaa suosikkiviestejään
+* Käyttäjä voi liputtaa viestejä
+* Erilaiset käyttäjäroolit peruskäyttäjän lisäksi:
+    * Admin: voi poistaa tai lisätä viestin, aiheen tai käyttäjän,
+    sekä nähdä aihe-ehdotukset. Näkee lisäksi viestien liputusmäärät ja liputtajat
+    * Moderaattori: voi poistaa viestejä, ja näkee viestien liputusmäärät sekä liputtajat.
+
+## Lisädokumentaatio
+
+* [Välipalautuskommentit (SISÄLTÄÄ KYSYMYKSIÄ TARKASTAJALLE!!)](/docs/valipalautukset.md)
+* [Alkuperäinen määrittely (PÄIVITETÄÄN)](/docs/maarittelydoc.md)
