@@ -8,7 +8,7 @@ def get_topic_list():
 
 def send(topic):
     user_id = users.user_id()
-    if user_id == 0 or len(topic) > 30:
+    if user_id == 0 or len(topic) > 30 or len(topic) == 0:
         return False
     try:
         sql = "INSERT INTO topics (topic, sent_at) VALUES (:topic, NOW())"

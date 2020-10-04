@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Etusivu{% endblock %}
+{% block content %}
+<div class="content">
+    <ul>
+        <a href="{{ '/topic/%s'%topic_id%'/newmessage%s'}}">
+            <i>Lisää viesti</i>
+        </a>
+        {% for message in messages %}
+        <li>
+            message[0]
+        </li>
+        {% endfor %}
+        {% endblock %}
+    </ul>
+</div>

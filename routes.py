@@ -26,7 +26,19 @@ def topic(topic_id):
     if user_id == 0:
         return redirect("/")
     else:
-        return render_template("topic.html", messages=list)
+        return render_template("topic.html", messages=list, t_id=topic_id)
+
+@app.route("/topic/<int:topic_id>/newmessage")
+def newmessage(topic_id):
+    return render_template("newmessage")
+
+@app.route("/topic/<int:topic_id>/sendmessage", methods=["post"])
+def sendmessage(topic_id):
+    content = request.form["content"]
+    if messages.send(content, topic_id):
+        return redirect("/topic/{topic_id}")
+    else:
+        return render_template("/")
 
 @app.route("/login", methods=["get","post"])
 def login():

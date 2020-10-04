@@ -12,7 +12,7 @@
     background: var(--byzantium);
     color: var(--light-cyan);
     margin: auto;
-    max-width: 70vw;
+    max-width: 90vw;
   }
 
   ul {
@@ -24,7 +24,7 @@
     background: var(--maize-crayola);
     border-radius: .5em;
     display  : grid;
-
+    font-size: 1.2vw;
   }
 
   a:visited, a {
@@ -41,7 +41,7 @@
 
   h1 a:visited, h1 a {
     color: var(--rich-black-fogra-29);
-    font-size: 6vw;
+    font-size: 10vw;
     text-shadow: 4px 5px var(--red-crayola);
   }
 
@@ -54,5 +54,5 @@
   .content {
     background: var(--red-crayola);
     padding: 1.5em 2em;
-   border-radius: .5em
+    border-radius: .5em
   }

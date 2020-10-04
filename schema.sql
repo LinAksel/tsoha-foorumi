@@ -49,7 +49,7 @@ CREATE TABLE flags
     id SERIAL PRIMARY KEY,
     message_id INTEGER REFERENCES messages,
     user_id INTEGER REFERENCES users,
-    content TEXT,
+    content TEXT UNIQUE,
     sent_at TIMESTAMP
 );
 
