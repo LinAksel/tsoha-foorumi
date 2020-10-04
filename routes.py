@@ -7,17 +7,17 @@ def index():
     list = topics.get_topic_list()
     return render_template("index.html", topics=list)
 
-@app.route("/new")
-def new():
-    return render_template("new.html")
+@app.route("/newtopic")
+def newtopic(message):
+    return render_template("newtopic.html")
 
-@app.route("/send", methods=["post"])
-def send():
+@app.route("/sendtopic", methods=["post"])
+def sendtopic():
     content = request.form["content"]
     if topics.send(content):
         return redirect("/")
     else:
-        return render_template("new.html", message="Aiheen luominen ei onnistunut!")
+        return render_template("newtopic.html", message="Aiheen luominen ei onnistunut!")
 
 @app.route("/topic/<int:topic_id>")
 def topic(topic_id):
@@ -35,10 +35,11 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if users.login(username,password):
+        okei = users.login(username, password)
+        if okei[0]:
             return redirect("/")
         else:
-            return render_template("login.html")
+            return render_template("login.html", message=okei[1], additional=okei[2])
 
 @app.route("/logout")
 def logout():
@@ -52,7 +53,9 @@ def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if users.register(username,password):
+        passwordconf = request.form["passwordconf"]
+        okei = users.register(username, password, passwordconf)
+        if okei[0]:
             return redirect("/")
         else:
-            return render_template("error.html",message="Rekisteröinti ei onnistunut")
+            return render_template("register.html",message=okei[1],additional=okei[2])

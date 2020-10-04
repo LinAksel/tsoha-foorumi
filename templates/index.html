@@ -1,14 +1,18 @@
 {% extends "layout.html" %}
 {% block title %}Etusivu{% endblock %}
 {% block content %}
-<a href="/new">
-    <i>Lisää aihe</i>
-</a>
-<hr>
-{% for topic in topics %}
-<h2>
-    <a href="{{ '/topic/%s'%topic[0]}}">{{ topic[1] }}</a>
-</h2>
-<hr>
-{% endfor %}
-{% endblock %}
+<div class="content">
+    Tervetuloa Sipsitykseen! Muistathan lukea
+    <ul>
+        KYMMENEN SUOSITUINTA AIHETTA
+        {% for topic in topics %}
+        <li>
+            <a href="{{ '/topic/%s'%topic[0]}}">{{ topic[1] }}</a>
+        </li>
+        {% endfor %}
+        <a href="/newtopic">
+            <i>Lisää aihe</i>
+        </a>
+        {% endblock %}
+    </ul>
+</div>
