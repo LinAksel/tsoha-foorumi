@@ -54,5 +54,12 @@
   .content {
     background: var(--red-crayola);
     padding: 1.5em 2em;
-    border-radius: .5em
+    border-radius: .5em;
+  }
+
+  .message {
+    background: var(--red-crayola);
+    padding: 1.5em 2em;
+    border-radius: .5em;
+    margin: .7em;
   }

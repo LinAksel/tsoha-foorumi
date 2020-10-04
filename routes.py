@@ -24,7 +24,7 @@ def topic(topic_id):
     user_id = users.user_id()
     list = messages.get_message_list(topic_id)
     if user_id == 0:
-        return redirect("/")
+        return render_template("topic.html", messages=[('Sinun tulee olla kirjautunut sisään nähdäksesi aiheiden viestit!',)])
     else:
         return render_template("topic.html", messages=list, t_id=topic_id)
 
