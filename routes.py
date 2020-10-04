@@ -23,10 +23,11 @@ def sendtopic():
 def topic(topic_id):
     user_id = users.user_id()
     list = messages.get_message_list(topic_id)
+    topicname = topics.get_topic_name(topic_id)[0][0]
     if user_id == 0:
-        return render_template("topic.html", messages=[('Sinun tulee olla kirjautunut sisään nähdäksesi aiheiden viestit!',)])
+        return render_template("topic.html", messages=[('Sinun tulee olla kirjautunut sisään nähdäksesi aiheiden viestit!',)], name=topicname)
     else:
-        return render_template("topic.html", messages=list, t_id=topic_id)
+        return render_template("topic.html", messages=list, t_id=topic_id, name=topicname)
 
 @app.route("/topic/<int:topic_id>/newmessage")
 def newmessage(topic_id):

@@ -6,6 +6,11 @@ def get_topic_list():
     result = db.session.execute(sql)
     return result.fetchall()
 
+def get_topic_name(topic_id):
+    sql = "SELECT topic FROM topics WHERE topics.id=:topic_id"
+    result = db.session.execute(sql, {"topic_id":topic_id})
+    return result.fetchall()
+
 def send(topic):
     user_id = users.user_id()
     if user_id == 0 or len(topic) > 30 or len(topic) == 0:
