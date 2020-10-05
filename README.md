@@ -4,7 +4,7 @@ Helsingin yliopiston Tietokantasovellus-kurssin harjoitustyönä toteutettava oh
 
 ## Heroku
 
-* [Foorumi](https://tsoha2020-foorumi.herokuapp.com/) HUOM!! Heroku huoltotilassa klo. 12:30-19:00 maanantaina 5.10.2020.
+* [Foorumi](https://tsoha2020-foorumi.herokuapp.com/)
 
 ## Kuvaus
 
