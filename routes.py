@@ -1,11 +1,23 @@
 from app import app
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, abort
 import topics, users, messages
+
+ip_ban_list = ['']
+
+@app.before_request
+def block_method():
+    ip = request.environ.get('REMOTE_ADDR')
+    if ip in ip_ban_list:
+        abort(403)
 
 @app.route("/")
 def index():
     list = topics.get_topic_list()
     return render_template("index.html", topics=list)
+
+@app.route("/rules")
+def rules():
+    return render_template("rules.html")
 
 @app.route("/newtopic")
 def newtopic():
