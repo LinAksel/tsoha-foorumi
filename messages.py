@@ -2,7 +2,7 @@ from db import db
 import users
 
 def get_message_list(topic_id):
-    sql = """SELECT M.content, U.username 
+    sql = """SELECT M.content, U.username, M.id, M.user_id 
              FROM users U, messages M, messagetopics MT, topics T
              WHERE MT.topic_id = T.id AND MT.message_id = M.id AND T.id=:topic_id AND M.user_id = U.id 
              ORDER BY M.sent_at DESC"""
@@ -10,7 +10,7 @@ def get_message_list(topic_id):
     return result.fetchall()
 
 def get_users_messages(user_id):
-    sql = """SELECT M.content, M.sent_at, T.topic 
+    sql = """SELECT M.content, M.sent_at, T.topic, M.id
              FROM users U, messages M, messagetopics MT, topics T
              WHERE MT.topic_id = T.id AND MT.message_id = M.id AND M.user_id = U.id AND U.id=:user_id 
              ORDER BY M.sent_at DESC"""

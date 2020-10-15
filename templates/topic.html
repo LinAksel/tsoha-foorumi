@@ -1,16 +1,25 @@
 {% extends "layout.html" %}
 {% block title %}{{ name }}{% endblock %}
 {% block content %}
-<h2>{{ name }}</h2>
 {% if t_id %}
-<ul>
+<ul class="fixed">
     <a href="{{ '/topic/%s'%t_id}}/newmessage">
         <i>Lisää viesti</i>
     </a>
 </ul>
 {% endif %}
+<h2>{{ name }}</h2>
 {% for message in messages %}
 <div class="message">
+    {% if session.user_id %}
+    {% if session.user_id == message[3] %}
+    <ul>
+        <a href="/missaviestitkuolee">
+            <i>Muokkaa tai poista</i>
+        </a>
+    </ul>
+    {% endif %}
+    {% endif %}
     <h3>
         {{ message[0] }}
     </h3>

@@ -16,6 +16,13 @@
     font-size: 1.5rem;
   }
 
+  .fixed {
+    position: fixed;
+    float: right;
+    right: 2vw;
+    top: 30vw;
+  }
+
   ul {
     color: var(--red-crayola);
     box-shadow: 6px 6px var(--rich-black-fogra-29);

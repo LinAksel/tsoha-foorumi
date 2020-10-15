@@ -15,7 +15,7 @@ Uudenlaisia aihelisäyksiä on myös mahdollista ehdottaa admineille. Tulevaisuu
 
 * Käyttäjä voi rekisteröityä sivulle tunnuksella, joka ei ole jo varattu
 * Käyttäjä voi kirjautua olemassaolevalla tunnuksella
-* Käyttäjä näkee kymmenen uusinta aihetta palkissa
+* Käyttäjä näkee kymmenen suosituinta aihetta palkissa
 * Sisäänkirjautunut käyttäjä voi lukea aihealueiden viestejä
 * Sisäänkirjautunut käyttäjä voi lisätä aihealueelle viestin
 * Sisäänkirjautunut käyttäjä voi ehdottaa uutta aihetta
@@ -23,11 +23,10 @@ Uudenlaisia aihelisäyksiä on myös mahdollista ehdottaa admineille. Tulevaisuu
 ## Puuttuva toiminnallisuus 5.10.2020 (todo ennen loppupalautusta)
 
 * Käyttäjä voi selata kaikkia aiheita
-* Käyttäjä voi nähdä profiilinsa
+* Käyttäjä voi nähdä profiilinsa (osittain kesken)
 * Käyttäjä voi muokata omaa viestiään
 * Käyttäjä voi poistaa oman viestinsä
 * Käyttäjä voi lisätä tietoa profiiliinsa, ja poistaa sitä
-* Käyttäjä näkee palkissa kymmenen eniten viestejä sisältävää aihetta (tällä hetkellä kymmenen uusinta)
 * Käyttäjä voi tallentaa suosikkiviestejään
 * Käyttäjä voi liputtaa viestejä
 * Erilaiset käyttäjäroolit peruskäyttäjän lisäksi:

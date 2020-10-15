@@ -2,16 +2,14 @@
 {% block title %}Profiili{% endblock %}
 {% block content %}
 <h2>{{ user }}</h2>
-{% if t_id %}
-<ul>
-    <a href="{{ '/topic/%s'%t_id}}/newmessage">
-        <i>Lisää viesti</i>
-    </a>
-</ul>
-{% endif %}
 Omat viestit:
 {% for message in messages %}
 <div class="message">
+    <ul>
+        <a href="/missaviestitkuolee">
+            <i>Muokkaa tai poista</i>
+        </a>
+    </ul>
     {{ message[2] }}
     <h3>
         {{ message[0] }}
