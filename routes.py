@@ -31,6 +31,15 @@ def sendtopic():
     else:
         return render_template("newtopic.html", message="Aihetta on jo ehdotettu!")
 
+@app.route("/profile/<username>")
+def profile(username):
+    getuser = users.username()
+    if username == getuser:
+        list = messages.get_users_messages(users.user_id())
+        return render_template("profile.html", user=username, messages=list)
+    else:
+        return render_template("topic.html", messages=[('Sinulla ei ole oikeutta nähdä tätä profiilisivua!',)], name=username)
+
 @app.route("/topic/<int:topic_id>")
 def topic(topic_id):
     user_id = users.user_id()
@@ -51,7 +60,7 @@ def sendmessage(topic_id):
     if messages.send(content, topic_id):
         return redirect('/topic/' + str(topic_id))
     else:
-        return redirect("/")
+        return render_template("newmessage.html", t_id=topic_id, message="Viestisi on liian pitkä tai tyhjä!", additional="Viestin maksimipituus on  500 merkkiä")
 
 @app.route("/login", methods=["get","post"])
 def login():

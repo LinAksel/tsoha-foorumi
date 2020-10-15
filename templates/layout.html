@@ -6,7 +6,8 @@
 </h1>
 <hr>
 {% if session.user_id %}
-Olet kirjautuneena sisään käyttäjänimellä <a href="{{ '/%s'%session['username']}}">{{ session['username'] }}</a>.
+Olet kirjautuneena sisään käyttäjänimellä <a
+    href="{{ '/profile/%s'%session['username']}}">{{ session['username'] }}</a>.
 <a href="/logout">Kirjaudu ulos</a>
 {% else %}
 <a href="/login">Kirjaudu sisään</a>

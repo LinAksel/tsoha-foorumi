@@ -1,8 +1,9 @@
 {% extends "layout.html" %}
-{% block title %}Uusi aihe{% endblock %}
+{% block title %}Uusi viesti{% endblock %}
 {% block content %}
 {% if session.user_id %}
 <h2>{{ message }}</h2>
+{{ additional }}
 <form action="{{ '/topic/%s'%t_id}}/sendmessage" method="post">
     Viesti: <br>
     <textarea name="content" rows="5" cols="50"></textarea>

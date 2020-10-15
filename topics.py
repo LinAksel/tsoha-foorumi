@@ -2,7 +2,7 @@ from db import db
 import users
 
 def get_topic_list():
-    sql = "SELECT id, topic, sent_at FROM topics ORDER BY sent_at DESC LIMIT 10"
+    sql = "SELECT T.id, T.topic, COUNT(*) AS maara FROM topics T LEFT JOIN messagetopics MT ON MT.topic_id = T.id GROUP BY T.topic, T.id ORDER BY maara DESC LIMIT 10"
     result = db.session.execute(sql)
     return result.fetchall()
 

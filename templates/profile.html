@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
-{% block title %}{{ name }}{% endblock %}
+{% block title %}Profiili{% endblock %}
 {% block content %}
-<h2>{{ name }}</h2>
+<h2>{{ user }}</h2>
 {% if t_id %}
 <ul>
     <a href="{{ '/topic/%s'%t_id}}/newmessage">
@@ -9,8 +9,10 @@
     </a>
 </ul>
 {% endif %}
+Omat viestit:
 {% for message in messages %}
 <div class="message">
+    {{ message[2] }}
     <h3>
         {{ message[0] }}
     </h3>
