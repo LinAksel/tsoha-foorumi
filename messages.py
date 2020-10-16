@@ -17,6 +17,12 @@ def get_users_messages(user_id):
     result = db.session.execute(sql, {"user_id":user_id})
     return result.fetchall()
 
+def delete_message(message_id):
+    sql = """DELETE FROM messages MT 
+             WHERE MT.id=:message_id"""
+    db.session.execute(sql, {"message_id":message_id})
+    db.session.commit()
+
 def update_message(message_id, content):
     user_id = users.user_id()
     sql = "SELECT user_id FROM messages WHERE id=:message_id"

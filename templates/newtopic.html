@@ -1,8 +1,10 @@
 {% extends "layout.html" %}
 {% block title %}Uusi aihe{% endblock %}
 {% block content %}
+{% if message %}
+<h3>{{ message }}</h3>
+{% endif %}
 {% if session.user_id %}
-<h2>{{ message }}</h2>
 <form action="/sendtopic" method="post">
     Aihe: <br>
     <textarea name="content" rows="1" cols="40"></textarea>

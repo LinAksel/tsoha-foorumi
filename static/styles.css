@@ -20,7 +20,7 @@
     position: fixed;
     float: right;
     right: 2vw;
-    top: 30vw;
+    bottom: 5vw;
   }
 
   ul {
@@ -80,3 +80,49 @@
   .message h3 {
     font-style: normal;
   }
+
+  .drawer {
+    position: relative;
+  }
+  .drawer input {
+    width: 100%;
+    height: 2.0rem;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    margin: 0;
+    z-index: 3;
+    cursor: pointer;
+  }
+
+  .drawer_content {
+    width: 0;
+    margin: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .drawer input:checked ~ .drawer_content {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    pointer-events: initial;
+  }
+
+  .btn-link {
+    outline: none;
+    background: var(--red-crayola);
+    border-radius: .5em;
+    cursor: pointer;
+    padding: 0;
+    color: var(--light-cyan);
+    font-weight: 800;
+    text-shadow: 2px 2px var(--rich-black-fogra-29);
+    font-family: inherit;
+    font-size: inherit;
+    font-style: italic;
+    padding: 5px 10px;
+  }
+}

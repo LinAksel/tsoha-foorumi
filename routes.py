@@ -26,10 +26,17 @@ def newtopic():
 @app.route("/sendtopic", methods=["post"])
 def sendtopic():
     content = request.form["content"]
+    message = ""
     if topics.sendsuggestion(content):
-        return redirect("/")
+        message="Ehdotuksesi on lähetetty ylläpidolle!"
     else:
-        return render_template("newtopic.html", message="Aihetta on jo ehdotettu!")
+        message="Aihetta on jo ehdotettu!"
+    return render_template("newtopic.html", message=message)
+
+@app.route("/<previous>/<identifier>/deletemessage/<int:m_id>", methods=["post"])
+def deletemessage(m_id, previous, identifier):
+    messages.delete_message(m_id)
+    return redirect('/' + str(previous) + '/' + str(identifier))
 
 @app.route("/profile/<username>")
 def profile(username):

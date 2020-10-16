@@ -57,6 +57,6 @@ CREATE TABLE messagetopics
 (
     id SERIAL PRIMARY KEY,
     topic_id INTEGER REFERENCES topics,
-    message_id INTEGER REFERENCES messages
+    message_id INTEGER REFERENCES messages ON DELETE CASCADE
 );
 

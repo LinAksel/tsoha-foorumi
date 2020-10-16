@@ -11,14 +11,22 @@
 <h2>{{ name }}</h2>
 {% for message in messages %}
 <div class="message">
-    {% if session.user_id %}
-    {% if session.user_id == message[3] %}
+    {% if session.user_id and session.user_id == message[3]%}
     <ul>
-        <a href="/missaviestitkuolee">
-            <i>Muokkaa tai poista</i>
-        </a>
+        <li>Muokkaa</li>
     </ul>
-    {% endif %}
+    <ul>
+        <div class="drawer">
+            <input type="checkbox">
+            Poista
+            <div class="drawer_content">
+                <li>Oletko varma?</li>
+                <form action="{{ t_id}}{{ '/deletemessage/%s'%message[2]}}" method="post">
+                    <button type="submit" class="btn-link">Kyllä</button>
+                </form>
+            </div>
+        </div>
+    </ul>
     {% endif %}
     <h3>
         {{ message[0] }}
