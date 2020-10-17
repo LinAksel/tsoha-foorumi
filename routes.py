@@ -47,6 +47,20 @@ def profile(username):
     else:
         return render_template("topic.html", messages=[('Sinulla ei ole oikeutta nähdä tätä profiilisivua!',)], name=username)
 
+@app.route("/<previous>/<identifier>/editmessage/<int:message_id>")
+def editmessage(message_id, previous, identifier):
+    content = messages.get_message(message_id)
+    return render_template("editmessage.html", messagecontent=content, m_id=message_id)
+
+@app.route("/<previous>/<identifier>/editmessage/<int:message_id>/send", methods=["post"])
+def sendeditmessage(message_id, previous, identifier):
+    content = request.form["content"]
+    if messages.update_message(message_id, content):
+        return redirect('/' + str(previous) + '/' + str(identifier))
+    else:
+        return render_template("editmessage.html", message="Sinulla ei ole oikeutta muokata viestiä!", messagecontent=content, 
+        m_id=message_id, previous=previous, identifier=identifier)
+
 @app.route("/topic/<int:topic_id>")
 def topic(topic_id):
     user_id = users.user_id()

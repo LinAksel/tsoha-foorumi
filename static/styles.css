@@ -111,7 +111,7 @@
     pointer-events: initial;
   }
 
-  .btn-link {
+  .remove_button {
     outline: none;
     background: var(--red-crayola);
     border-radius: .5em;
@@ -125,4 +125,3 @@
     font-style: italic;
     padding: 5px 10px;
   }
-}

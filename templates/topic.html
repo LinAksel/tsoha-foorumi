@@ -11,9 +11,24 @@
 <h2>{{ name }}</h2>
 {% for message in messages %}
 <div class="message">
+    {% if message[4] %}
+    {{ message[4]|int }} vuotta sitten
+    {% elif message[5] %}
+    {{ message[5]|int }} kuukautta sitten
+    {% elif message[6] %}
+    {{ message[6]|int }} päivää sitten
+    {% elif message[7] %}
+    {{ message[7]|int }} tuntia sitten
+    {% elif message[8] %}
+    {{ message[8]|int }} minuuttia sitten
+    {% else %}
+    Juuri nyt
+    {% endif %}
     {% if session.user_id and session.user_id == message[3]%}
     <ul>
-        <li>Muokkaa</li>
+        <a href="{{ t_id }}{{'/editmessage/%s'%message[2]}}">
+            <i>Muokkaa</i>
+        </a>
     </ul>
     <ul>
         <div class="drawer">
@@ -22,7 +37,7 @@
             <div class="drawer_content">
                 <li>Oletko varma?</li>
                 <form action="{{ t_id}}{{ '/deletemessage/%s'%message[2]}}" method="post">
-                    <button type="submit" class="btn-link">Kyllä</button>
+                    <button type="submit" class="remove_button">Kyllä</button>
                 </form>
             </div>
         </div>

@@ -6,16 +6,18 @@ Omat viestit:
 {% for message in messages %}
 <div class="message">
     <ul>
-        <li>Muokkaa</li>
+        <a href="{{ user }}{{'/editmessage/%s'%message[3]}}">
+            <i>Muokkaa</i>
+        </a>
     </ul>
     <ul>
         <div class="drawer">
             <input type="checkbox">
             Poista
             <div class="drawer_content">
-                <li>Haluatko varmasti poistaa?</li>
-                <form action="{{ t_id}}{{ '/deletemessage/%s'%message[2]}}" method="post">
-                    <button type="submit" class="btn-link">Kyllä, poista viesti</button>
+                <li>Oletko varma?</li>
+                <form action="{{ user}}{{ '/deletemessage/%s'%message[3]}}" method="post">
+                    <button type="submit" class="remove_button">Kyllä</button>
                 </form>
             </div>
         </div>
