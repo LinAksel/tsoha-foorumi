@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Etusivu{% endblock %}
+{% block content %}
+<div class="content">
+    Kaikki aiheet:
+    <ul class="centerlist">
+        {% for topic in topics %}
+        <li>
+            <a href="{{ '/topic/%s'%topic[0]}}">{{ topic[1] }}</a>
+        </li>
+        {% endfor %}
+        {% endblock %}
+    </ul>
+</div>

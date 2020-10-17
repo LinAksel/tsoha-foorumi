@@ -63,6 +63,11 @@
     text-shadow: none;
   }
 
+  .centerlist {
+    position: absolute;
+    color: var(--dark-sky-blue);
+  }
+
   .content {
     background: var(--red-crayola);
     padding: 1.5em 2em;

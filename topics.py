@@ -6,6 +6,11 @@ def get_topic_list():
     result = db.session.execute(sql)
     return result.fetchall()
 
+def get_full_topic_list():
+    sql = "SELECT T.id, T.topic FROM topics T ORDER BY T.topic"
+    result = db.session.execute(sql)
+    return result.fetchall()
+
 def get_topic_name(topic_id):
     sql = "SELECT topic FROM topics WHERE topics.id=:topic_id"
     result = db.session.execute(sql, {"topic_id":topic_id})

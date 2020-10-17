@@ -9,16 +9,29 @@
 </ul>
 {% endif %}
 <h2>{{ name }}</h2>
+<!-- Kommentointi koodissa ei normaalisit ole kovin siisti tapa. Nyt on kuitenkin pakko todeta, että
+    tiedostan eri aikojen if-else rakenteen olevan todella hirviömäinen. Tämä johtuu pitkälti siitä, että rakennuslogiikan kannalta vertailu on
+    helpointa tehdä tässä. Lopputuloksena rakentuu kuitenkin siisti HTML-->
 {% for message in messages %}
 <div class="message">
-    {% if message[4] %}
+    {% if message[4] == 1 %}
+    {{ message[4]|int }} vuosi sitten
+    {% elif message[4] %}
     {{ message[4]|int }} vuotta sitten
+    {% elif message[5] == 1 %}
+    {{ message[5]|int }} kuukausi sitten
     {% elif message[5] %}
     {{ message[5]|int }} kuukautta sitten
+    {% elif message[6] == 1 %}
+    {{ message[6]|int }} päivä sitten
     {% elif message[6] %}
     {{ message[6]|int }} päivää sitten
+    {% elif message[7] == 1 %}
+    {{ message[7]|int }} tunti sitten
     {% elif message[7] %}
     {{ message[7]|int }} tuntia sitten
+    {% elif message[8] == 1 %}
+    {{ message[8]|int }} minuutti sitten
     {% elif message[8] %}
     {{ message[8]|int }} minuuttia sitten
     {% else %}

@@ -114,3 +114,8 @@ def register():
             return redirect("/")
         else:
             return render_template("register.html",message=okei[1],additional=okei[2])
+
+@app.route("/topics")
+def fulltopics():
+    list = topics.get_full_topic_list()
+    return render_template("topics.html", topics=list)

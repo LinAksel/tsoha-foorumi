@@ -11,11 +11,12 @@ Helsingin yliopiston Tietokantasovellus-kurssin harjoitustyönä toteutettava oh
 Sipsitys on keskustelufoorumi, jossa sisäänkirjautunut käyttäjä voi selata eri aihepiireihin jaettuja (sipsiaiheisia) viestejä, sekä lisätä niitä.
 Uudenlaisia aihelisäyksiä on myös mahdollista ehdottaa admineille. Tulevaisuudessa käyttäjä voi myös lisätä tietoa itsestään profiilisivulle, valita viestin lähetyksen kohdalla kaikki siihen sopivat aiheet kerralla, ja liputtaa muiden käyttäjien viestejä.
 
-## Toiminnallisuudet 17.10.2020
+## Toiminnallisuudet 18.10.2020
 
 * Käyttäjä voi rekisteröityä sivulle tunnuksella, joka ei ole jo varattu
 * Käyttäjä voi kirjautua olemassaolevalla tunnuksella
 * Käyttäjä näkee kymmenen suosituinta aihetta palkissa
+* Käyttäjä voi selata kaikkia aiheita
 * Sisäänkirjautunut käyttäjä voi poistaa oman viestinsä
 * Sisäänkirjautunut käyttäjä voi muokata omaa viestiään
 * Sisäänkirjautunut käyttäjä voi lukea aihealueiden viestejä
@@ -24,7 +25,6 @@ Uudenlaisia aihelisäyksiä on myös mahdollista ehdottaa admineille. Tulevaisuu
 
 ## Puuttuva toiminnallisuus 5.10.2020 (todo ennen loppupalautusta)
 
-* Käyttäjä voi selata kaikkia aiheita
 * Käyttäjä voi nähdä profiilinsa (osittain kesken)
 * Käyttäjä voi lisätä tietoa profiiliinsa, ja poistaa sitä
 * Käyttäjä voi tallentaa suosikkiviestejään
