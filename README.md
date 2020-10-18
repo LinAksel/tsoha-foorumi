@@ -52,3 +52,5 @@ Uudenlaisia aihelisäyksiä on myös mahdollista ehdottaa admineille.
 * Aihe-ehdotuksia ei ikävä kyllä näe suoraan sivulta, tämä ominaisuus jäi "lähes valmiiksi", sillä tietokantayhteydet on jo tehty!
 
 * Sivun tulisi olla suhteellisen selkeä ilman näitä suurempia kuvailuja, sillä kaikesta tulee asianmukainen virheviesti, mikäli jotain sopimatonta tehdään.
+
+* HUOM!!!! Mikäli vanha tunnus on jäänyt kirjautuneeksi tietokantauudistuksen jälkeen, syntyy error. Session tulee siis lopettaa esimerkiksi selain sulkemalla tai evästeet poistamalla, jos näin tapahtuu
