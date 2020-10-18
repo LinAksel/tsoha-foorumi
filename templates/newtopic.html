@@ -4,14 +4,10 @@
 {% if message %}
 <h3>{{ message }}</h3>
 {% endif %}
-{% if session.user_id %}
 <form action="/sendtopic" method="post">
     Aihe: <br>
     <textarea name="content" rows="1" cols="40"></textarea>
     <br>
     <input type="submit" value="Luo aihe">
 </form>
-{% else %}
-<h2>Kirjaudu sisään nähdäksesi sisältöä!</h2>
-{% endif %}
 {% endblock %}

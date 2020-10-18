@@ -2,6 +2,25 @@
 {% block title %}Profiili{% endblock %}
 {% block content %}
 <h2>{{ user }}</h2>
+Tietoa:
+<div class="info">
+    <div class="drawer">
+        <input type="checkbox">
+        Muuta tietoja
+        <div class="drawer_content">
+            {% for info in infos %}
+            <li><a href="/vittu"><i>{{ info[0] }}</i></a></li>
+            {% endfor %}
+            {% if info|length < 5 %}
+            <li><a href="{{ user }}/editinfo"><i>Lisää tietokenttä</i></a></li>
+            {% endif %}
+        </div>
+    </div>
+    {% for info in infos %}
+    <h3>{{ info[0] }}</h3>
+    {{ info[1] }}
+    {% endfor %}
+</div>
 Omat viestit:
 {% for message in messages %}
 <div class="message">
@@ -17,7 +36,7 @@ Omat viestit:
             <div class="drawer_content">
                 <li>Oletko varma?</li>
                 <form action="{{ user}}{{ '/deletemessage/%s'%message[3]}}" method="post">
-                    <button type="submit" class="remove_button">Kyllä</button>
+                    <button type="submit" class="custom_button">Kyllä</button>
                 </form>
             </div>
         </div>

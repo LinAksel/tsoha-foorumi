@@ -116,7 +116,7 @@
     pointer-events: initial;
   }
 
-  .remove_button {
+  .custom_button {
     outline: none;
     background: var(--red-crayola);
     border-radius: .5em;
@@ -129,4 +129,18 @@
     font-size: inherit;
     font-style: italic;
     padding: 5px 10px;
+  }
+
+  .info, .info a {
+    background: var(--maize-crayola);
+    color: var(--byzantium);
+    text-shadow: 1px 1px var(--rich-black-fogra-29);
+    border-radius: .5em;
+    margin: .7em;
+    padding: 5px 10px;
+  }
+
+  .info h3 {
+    text-shadow: 2px 2px var(--red-crayola);
+    color: var(--rich-black-fogra-29);
   }

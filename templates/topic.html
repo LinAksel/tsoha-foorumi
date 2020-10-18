@@ -37,7 +37,7 @@
     {% else %}
     Juuri nyt
     {% endif %}
-    {% if session.user_id and session.user_id == message[3]%}
+    {% if session.user_id == message[3] or session.admin > 0 %}
     <ul>
         <a href="{{ t_id }}{{'/editmessage/%s'%message[2]}}">
             <i>Muokkaa</i>
@@ -50,12 +50,24 @@
             <div class="drawer_content">
                 <li>Oletko varma?</li>
                 <form action="{{ t_id}}{{ '/deletemessage/%s'%message[2]}}" method="post">
-                    <button type="submit" class="remove_button">Kyllä</button>
+                    <button type="submit" class="custom_button">Kyllä</button>
                 </form>
             </div>
         </div>
     </ul>
     {% endif %}
+    <ul>
+        <div class="drawer">
+            <input type="checkbox">
+            Raportoi
+            <div class="drawer_content">
+                <li>Raportoi asiaton viesti?</li>
+                <form action="{{'/flag/%s'%message[2]}}" method="post">
+                    <button type="submit" class="custom_button">Kyllä</button>
+                </form>
+            </div>
+        </div>
+    </ul>
     <h3>
         {{ message[0] }}
     </h3>

@@ -2,18 +2,17 @@ from app import app
 from flask import render_template, request, redirect, abort
 import topics, users, messages
 
-ip_ban_list = ['']
-
-@app.before_request
-def block_method():
-    ip = request.environ.get('REMOTE_ADDR')
-    if ip in ip_ban_list:
-        abort(403)
+error_redirect = 'Muistathan sivuston säännöt ja ohjeet?'
 
 @app.route("/")
 def index():
     list = topics.get_topic_list()
     return render_template("index.html", topics=list)
+
+@app.route("/topics")
+def fulltopics():
+    list = topics.get_full_topic_list()
+    return render_template("topics.html", topics=list)
 
 @app.route("/rules")
 def rules():
@@ -21,80 +20,104 @@ def rules():
 
 @app.route("/newtopic")
 def newtopic():
+    user_id = users.user_id()
+    if user_id == 0:
+        return render_template("rules.html", message='Kirjaudu sisään lähettääksesi ehdotuksia!', additional=error_redirect)
     return render_template("newtopic.html")
 
 @app.route("/sendtopic", methods=["post"])
 def sendtopic():
     content = request.form["content"]
-    message = ""
-    if topics.sendsuggestion(content):
-        message="Ehdotuksesi on lähetetty ylläpidolle!"
-    else:
-        message="Aihetta on jo ehdotettu!"
-    return render_template("newtopic.html", message=message)
+    user_id = users.user_id()
+    if user_id == 0:
+        return redirect("/newtopic")
+    message = topics.sendsuggestion(content, user_id)
+    return render_template("newtopic.html", message=message[1])
+
+@app.route("/flag/<int:message_id>", methods=["post"])
+def flagmessage(message_id):
+    user_id = users.user_id()
+    if user_id == 0:
+        return render_template("rules.html", message="Kirjaudu sisään raportoidaksesi viestejä!", additional=error_redirect)
+    list = topics.get_topic_list()
+    return render_template("index.html", topics=list, message='Kiitos raportoinnista!', additional='Ylläpito käsittelee viestin mahdollisimman pian')
 
 @app.route("/<previous>/<identifier>/deletemessage/<int:m_id>", methods=["post"])
 def deletemessage(m_id, previous, identifier):
+    m_user_id = messages.get_m_user_id(m_id)
+    user_id = users.user_id()
+    admin = users.admin()
+    if user_id != m_user_id[0] and admin < 2:
+        return render_template("rules.html", message='Sinulla ei ole oikeutta poistaa viestiä!', additional=error_redirect)
     messages.delete_message(m_id)
-    return redirect('/' + str(previous) + '/' + str(identifier))
+    return redirect("/" + str(previous) + "/" + str(identifier))
 
 @app.route("/profile/<username>")
 def profile(username):
     getuser = users.username()
-    if username == getuser:
-        list = messages.get_users_messages(users.user_id())
-        return render_template("profile.html", user=username, messages=list)
-    else:
-        return render_template("topic.html", messages=[('Sinulla ei ole oikeutta nähdä tätä profiilisivua!',)], name=username)
+    admin = users.admin()
+    if username != getuser and admin == 0:
+        return render_template("rules.html", message='Sinulla ei ole oikeutta nähdä profiilisivua!', additional=error_redirect)
+    list = messages.get_users_messages(users.user_id())
+    return render_template("profile.html", user=username, messages=list)
 
 @app.route("/<previous>/<identifier>/editmessage/<int:message_id>")
 def editmessage(message_id, previous, identifier):
-    content = messages.get_message(message_id)
-    return render_template("editmessage.html", messagecontent=content, m_id=message_id)
+    m_content = messages.get_message(message_id)
+    user_id = users.user_id()
+    admin = users.admin()
+    if user_id != m_content[1] and admin == 0:
+        return render_template("rules.html", message='Sinulla ei ole oikeutta muokata viestiä!', additional=error_redirect)
+    return render_template("editmessage.html", messagecontent=m_content[0], m_id=message_id)
 
 @app.route("/<previous>/<identifier>/editmessage/<int:message_id>/send", methods=["post"])
 def sendeditmessage(message_id, previous, identifier):
     content = request.form["content"]
-    if messages.update_message(message_id, content):
-        return redirect('/' + str(previous) + '/' + str(identifier))
-    else:
-        return render_template("editmessage.html", message="Sinulla ei ole oikeutta muokata viestiä!", messagecontent=content, 
-        m_id=message_id, previous=previous, identifier=identifier)
+    m_user_id = messages.get_m_user_id(message_id)
+    user_id = users.user_id()
+    admin = users.admin()
+    if user_id != m_user_id[0] and admin == 0:
+        return render_template("rules.html", message='Sinulla ei ole oikeutta muokata viestiä!', additional=error_redirect) 
+    messages.update_message(message_id, content)
+    return redirect('/' + str(previous) + '/' + str(identifier))
 
 @app.route("/topic/<int:topic_id>")
 def topic(topic_id):
     user_id = users.user_id()
-    list = messages.get_message_list(topic_id)
     topicname = topics.get_topic_name(topic_id)[0][0]
     if user_id == 0:
-        return render_template("topic.html", messages=[('Sinun tulee olla kirjautunut sisään nähdäksesi aiheiden viestit!',)], name=topicname)
-    else:
-        return render_template("topic.html", messages=list, t_id=topic_id, name=topicname)
+        return render_template("rules.html", message='Kirjaudu sisään nähdäksesi aiheiden viestejä!', additional=error_redirect) 
+    list = messages.get_message_list(topic_id)
+    return render_template("topic.html", messages=list, t_id=topic_id, name=topicname)
 
 @app.route("/topic/<int:topic_id>/newmessage")
 def newmessage(topic_id):
+    user_id = users.user_id()
+    if user_id == 0:
+        return render_template("rules.html", message='Kirjaudu sisään lähettääksesi viestejä!', additional=error_redirect)
     return render_template("newmessage.html", t_id=topic_id)
 
 @app.route("/topic/<int:topic_id>/sendmessage", methods=["post"])
 def sendmessage(topic_id):
     content = request.form["content"]
-    if messages.send(content, topic_id):
+    user_id = users.user_id()
+    if user_id == 0:
+        return redirect("/topic/" + str(topic_id) + "/newmessage")
+    sql_report = messages.send(content, topic_id, user_id)
+    if sql_report[0]:
         return redirect('/topic/' + str(topic_id))
-    else:
-        return render_template("newmessage.html", t_id=topic_id, message="Viestisi on liian pitkä tai tyhjä!", additional="Viestin maksimipituus on  500 merkkiä")
+    return render_template("newmessage.html", t_id=topic_id, message=sql_report[1], additional=sql_report[2])
 
 @app.route("/login", methods=["get","post"])
 def login():
-    if request.method == "GET":
-        return render_template("login.html")
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        okei = users.login(username, password)
-        if okei[0]:
+        sql_report = users.login(username, password)
+        if sql_report[0]:
             return redirect("/")
-        else:
-            return render_template("login.html", message=okei[1], additional=okei[2])
+        return render_template("login.html", message=sql_report[1], additional=sql_report[2])
+    return render_template("login.html")
 
 @app.route("/logout")
 def logout():
@@ -103,19 +126,13 @@ def logout():
 
 @app.route("/register", methods=["get","post"])
 def register():
-    if request.method == "GET":
-        return render_template("register.html")
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
         passwordconf = request.form["passwordconf"]
-        okei = users.register(username, password, passwordconf)
-        if okei[0]:
+        sql_report = users.register(username, password, passwordconf)
+        if sql_report[0]:
             return redirect("/")
         else:
-            return render_template("register.html",message=okei[1],additional=okei[2])
-
-@app.route("/topics")
-def fulltopics():
-    list = topics.get_full_topic_list()
-    return render_template("topics.html", topics=list)
+            return render_template("register.html",message=sql_report[1],additional=sql_report[2])
+    return render_template("register.html")

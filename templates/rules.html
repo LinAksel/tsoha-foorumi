@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% block title %}Säännöt{% endblock %}
 {% block content %}
+{% if message %}
+<h3>{{ message }}</h3>
+{{ additional }}
+{% endif %}
 <h2>Sipsitys-keskustelualustan säännöt</h2>
 <div class="content">
     Sääntöjen rikkominen voi johtaa väliaikaiseen tai pysyvään sipsitakavarikkoon. Kaikki lähetetyt viestit ovat alustan

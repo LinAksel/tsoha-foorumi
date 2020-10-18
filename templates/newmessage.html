@@ -5,14 +5,10 @@
 <h3>{{ message }}</h3>
 {{ additional }}
 {% endif %}
-{% if session.user_id %}
 <form action="{{ '/topic/%s'%t_id}}/sendmessage" method="post">
     Viesti: <br>
     <textarea name="content" rows="5" cols="50"></textarea>
     <br>
     <input type="submit" value="Lisää viesti">
 </form>
-{% else %}
-<h2>Kirjaudu sisään nähdäksesi sisältöä!</h2>
-{% endif %}
 {% endblock %}

@@ -2,7 +2,7 @@ CREATE TABLE users
 (
     id SERIAL PRIMARY KEY,
     username TEXT UNIQUE,
-    admin BOOLEAN,
+    admin INTEGER,
     password TEXT
 );
 
@@ -49,7 +49,6 @@ CREATE TABLE flags
     id SERIAL PRIMARY KEY,
     message_id INTEGER REFERENCES messages,
     user_id INTEGER REFERENCES users,
-    content TEXT UNIQUE,
     sent_at TIMESTAMP
 );
 

@@ -1,18 +1,10 @@
 {% extends "layout.html" %}
 {% block title %}Uusi viesti{% endblock %}
 {% block content %}
-{% if message %}
-<h3>{{ message }}</h3>
-{{ additional }}
-{% endif %}
-{% if session.user_id %}
 <form action="{{ m_id}}/send" method="post">
     Viesti: <br>
     <textarea name="content" rows="5" cols="50">{{ messagecontent }}</textarea>
     <br>
     <input type="submit" value="Päivitä viesti">
 </form>
-{% else %}
-<h2>Kirjaudu sisään muokataksesi viestiä</h2>
-{% endif %}
 {% endblock %}

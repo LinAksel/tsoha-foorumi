@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% block title %}Etusivu{% endblock %}
 {% block content %}
+{% if message %}
+<h2>{{ message }}</h2>
+{{ additional }}
+{% endif %}
 <div class="content">
     Tervetuloa Sipsitykseen! Muistathan lukea sivun <a href="/rules">säännöt</a> ennen uuden tunnuksen
     luontia!

@@ -17,6 +17,7 @@ Uudenlaisia aihelisäyksiä on myös mahdollista ehdottaa admineille. Tulevaisuu
 * Käyttäjä voi kirjautua olemassaolevalla tunnuksella
 * Käyttäjä näkee kymmenen suosituinta aihetta palkissa
 * Käyttäjä voi selata kaikkia aiheita
+* Sisäänkirjautunut käyttäjä voi liputtaa viestejä
 * Sisäänkirjautunut käyttäjä voi poistaa oman viestinsä
 * Sisäänkirjautunut käyttäjä voi muokata omaa viestiään
 * Sisäänkirjautunut käyttäjä voi lukea aihealueiden viestejä
@@ -28,7 +29,6 @@ Uudenlaisia aihelisäyksiä on myös mahdollista ehdottaa admineille. Tulevaisuu
 * Käyttäjä voi nähdä profiilinsa (osittain kesken)
 * Käyttäjä voi lisätä tietoa profiiliinsa, ja poistaa sitä
 * Käyttäjä voi tallentaa suosikkiviestejään
-* Käyttäjä voi liputtaa viestejä
 * Erilaiset käyttäjäroolit peruskäyttäjän lisäksi:
     * Admin: voi poistaa tai lisätä viestin, aiheen tai käyttäjän,
     sekä nähdä aihe-ehdotukset. Näkee lisäksi viestien liputusmäärät ja liputtajat
