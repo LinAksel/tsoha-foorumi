@@ -25,8 +25,18 @@ def newtopic():
         return render_template("rules.html", message='Kirjaudu sisään lähettääksesi ehdotuksia!', additional=error_redirect)
     return render_template("newtopic.html")
 
+@app.route("/flagged/messages")
+def flagged():
+    admin = users.admin()
+    if admin == 0:
+       return render_template("rules.html", message='Sinulla ei ole oikeutta selata raportoituja viestejä!', additional=error_redirect)
+    list = messages.get_flagged_message_list()
+    return render_template("flagged.html", messages=list)
+
 @app.route("/sendtopic", methods=["post"])
 def sendtopic():
+    if users.token() != request.form["csrf_token"]:
+        abort(403)
     content = request.form["content"]
     user_id = users.user_id()
     if user_id == 0:
@@ -36,9 +46,12 @@ def sendtopic():
 
 @app.route("/flag/<int:message_id>", methods=["post"])
 def flagmessage(message_id):
+    if users.token() != request.form["csrf_token"]:
+        abort(403)
     user_id = users.user_id()
     if user_id == 0:
         return render_template("rules.html", message="Kirjaudu sisään raportoidaksesi viestejä!", additional=error_redirect)
+    messages.flag(message_id, user_id)
     list = topics.get_topic_list()
     return render_template("index.html", topics=list, message='Kiitos raportoinnista!', additional='Ylläpito käsittelee viestin mahdollisimman pian')
 
@@ -52,14 +65,68 @@ def deletemessage(m_id, previous, identifier):
     messages.delete_message(m_id)
     return redirect("/" + str(previous) + "/" + str(identifier))
 
+@app.route("/profile/<username>/addinfo")
+def addinfo(username):
+    user_id = users.user_id()
+    s_username = users.username()
+    if user_id == 0 or s_username != username:
+        return render_template("rules.html", message='Sinulla ei ole oikeutta lisätä tietoa tähän profiiliin!', additional=error_redirect)
+    return render_template("addinfo.html", username=username)
+
+@app.route("/profile/<username>/addinfo/send", methods=["post"])
+def sendinfo(username):
+    if users.token() != request.form["csrf_token"]:
+        abort(403)
+    user_id = users.user_id()
+    s_username = users.username()
+    if user_id == 0 or s_username != username:
+        return render_template("rules.html", message='Sinulla ei ole oikeutta lisätä tietoa tähän profiiliin!', additional=error_redirect)
+    about = request.form["about"]
+    info = request.form["info"]
+    users.add_info(user_id, about, info)
+    return redirect("/profile/" + str(username))
+
+@app.route("/profile/<username>/editinfo/<int:info_id>")
+def editinfo(username, info_id):
+    user_id = users.user_id()
+    s_username = users.username()
+    if user_id == 0 or s_username != username:
+        return render_template("rules.html", message='Sinulla ei ole oikeutta muokata tämän profiilin tietoja!', additional=error_redirect)
+    user_info = users.get_info(info_id)
+    return render_template("editinfo.html", username=username, about=user_info[0], info=user_info[1], info_id=info_id)
+
+@app.route("/profile/<username>/editinfo/<int:info_id>/send", methods=["post"])
+def submiteditinfo(username, info_id):
+    if users.token() != request.form["csrf_token"]:
+        abort(403)
+    user_id = users.user_id()
+    s_username = users.username()
+    if user_id == 0 or s_username != username:
+        return render_template("rules.html", message='Sinulla ei ole oikeutta muokata tämän profiilin tietoja!', additional=error_redirect)
+    about = request.form["about"]
+    info = request.form["info"]
+    users.update_info(info_id, about, info)
+    return redirect("/profile/" + str(username))
+
+@app.route("/profile/<username>/editinfo/<int:info_id>/delete", methods=["post"])
+def deleteinfo(username, info_id):
+    user_id = users.user_id()
+    s_username = users.username()
+    if user_id == 0 or s_username != username:
+        return render_template("rules.html", message='Sinulla ei ole oikeutta muokata tämän profiilin tietoja!', additional=error_redirect)
+    users.delete_info(info_id)
+    return redirect("/profile/" + str(username))
+
 @app.route("/profile/<username>")
 def profile(username):
     getuser = users.username()
     admin = users.admin()
     if username != getuser and admin == 0:
         return render_template("rules.html", message='Sinulla ei ole oikeutta nähdä profiilisivua!', additional=error_redirect)
-    list = messages.get_users_messages(users.user_id())
-    return render_template("profile.html", user=username, messages=list)
+    user_id = users.user_id_db(username)[0]
+    own_messages = messages.get_users_messages(user_id)
+    own_info = users.get_all_info(user_id)
+    return render_template("profile.html", user=username, messages=own_messages, infos=own_info)
 
 @app.route("/<previous>/<identifier>/editmessage/<int:message_id>")
 def editmessage(message_id, previous, identifier):
@@ -72,6 +139,8 @@ def editmessage(message_id, previous, identifier):
 
 @app.route("/<previous>/<identifier>/editmessage/<int:message_id>/send", methods=["post"])
 def sendeditmessage(message_id, previous, identifier):
+    if users.token() != request.form["csrf_token"]:
+        abort(403)
     content = request.form["content"]
     m_user_id = messages.get_m_user_id(message_id)
     user_id = users.user_id()
@@ -99,6 +168,8 @@ def newmessage(topic_id):
 
 @app.route("/topic/<int:topic_id>/sendmessage", methods=["post"])
 def sendmessage(topic_id):
+    if users.token() != request.form["csrf_token"]:
+        abort(403)
     content = request.form["content"]
     user_id = users.user_id()
     if user_id == 0:

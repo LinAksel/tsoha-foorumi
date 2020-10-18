@@ -9,5 +9,6 @@
     <textarea name="content" rows="1" cols="40"></textarea>
     <br>
     <input type="submit" value="Luo aihe">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
 {% endblock %}

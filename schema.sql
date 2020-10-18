@@ -22,13 +22,6 @@ CREATE TABLE userinfo
     info TEXT
 );
 
-CREATE TABLE favouritemessages
-(
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users,
-    message_id INTEGER REFERENCES messages
-);
-
 CREATE TABLE topicideas
 (
     id SERIAL PRIMARY KEY,

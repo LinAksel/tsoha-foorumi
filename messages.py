@@ -14,6 +14,19 @@ def get_message_list(topic_id):
     result = db.session.execute(sql, {"topic_id":topic_id})
     return result.fetchall()
 
+def get_flagged_message_list():
+    sql = """SELECT M.content, U.username, M.id,
+             EXTRACT(YEAR FROM AGE(NOW(), M.sent_at)),
+             EXTRACT(MONTH FROM AGE(NOW(), M.sent_at)),
+             EXTRACT(DAY FROM AGE(NOW(), M.sent_at)),
+             EXTRACT(HOUR FROM AGE(NOW(), M.sent_at)),
+             EXTRACT(MINUTE FROM AGE(NOW(), M.sent_at))
+             FROM users U, messages M, flags F
+             WHERE F.message_id=M.id AND U.id=M.user_id 
+             ORDER BY M.sent_at DESC"""
+    result = db.session.execute(sql)
+    return result.fetchall()
+
 def get_m_user_id(message_id):
     sql = """SELECT user_id
              FROM messages

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}Uusi viesti{% endblock %}
+{% block content %}
+<form action="{{ '/profile/%s'%username}}/editinfo/{{ info_id }}/send" method="post">
+    Otsikko: <br>
+    <textarea name="about" rows="1" cols="50">{{ about }}</textarea>
+    <br>
+    Sisältö: <br>
+    <textarea name="info" rows="5" cols="50">{{ info }}</textarea>
+    <br>
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="submit" value="Muuta tieto">
+</form>
+<form action="{{ '/profile/%s'%username}}/editinfo/{{ info_id }}/delete" method="post">
+    <button type="submit">Poista tieto</button>
+</form>
+{% endblock %}

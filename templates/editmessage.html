@@ -5,6 +5,7 @@
     Viesti: <br>
     <textarea name="content" rows="5" cols="50">{{ messagecontent }}</textarea>
     <br>
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <input type="submit" value="Päivitä viesti">
 </form>
 {% endblock %}

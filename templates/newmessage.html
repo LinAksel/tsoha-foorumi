@@ -10,5 +10,6 @@
     <textarea name="content" rows="5" cols="50"></textarea>
     <br>
     <input type="submit" value="Lisää viesti">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
 {% endblock %}

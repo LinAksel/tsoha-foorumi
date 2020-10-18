@@ -9,10 +9,10 @@ Tietoa:
         Muuta tietoja
         <div class="drawer_content">
             {% for info in infos %}
-            <li><a href="/vittu"><i>{{ info[0] }}</i></a></li>
+            <li><a href="{{ user }}{{'/editinfo/%s'%info[2]}}"><i>{{ info[0] }}</i></a></li>
             {% endfor %}
             {% if info|length < 5 %}
-            <li><a href="{{ user }}/editinfo"><i>Lisää tietokenttä</i></a></li>
+            <li><a href="{{ user }}/addinfo"><i>Lisää tietokenttä</i></a></li>
             {% endif %}
         </div>
     </div>

@@ -9,6 +9,9 @@
 Olet kirjautuneena sisään käyttäjänimellä <a
     href="{{ '/profile/%s'%session['username']}}">{{ session['username'] }}</a>.
 <a href="/logout">Kirjaudu ulos</a>
+{% if session.admin > 0 %}
+<a href="/flagged/messages">RAPORTOIDUT VIESTIT</a>
+{% endif %}
 {% else %}
 <a href="/login">Kirjaudu sisään</a>
 {% endif %}
