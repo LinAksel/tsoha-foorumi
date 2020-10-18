@@ -9,32 +9,46 @@ Helsingin yliopiston Tietokantasovellus-kurssin harjoitustyönä toteutettava oh
 ## Kuvaus
 
 Sipsitys on keskustelufoorumi, jossa sisäänkirjautunut käyttäjä voi selata eri aihepiireihin jaettuja (sipsiaiheisia) viestejä, sekä lisätä niitä.
-Uudenlaisia aihelisäyksiä on myös mahdollista ehdottaa admineille. Tulevaisuudessa käyttäjä voi myös lisätä tietoa itsestään profiilisivulle, valita viestin lähetyksen kohdalla kaikki siihen sopivat aiheet kerralla, ja liputtaa muiden käyttäjien viestejä.
+Uudenlaisia aihelisäyksiä on myös mahdollista ehdottaa admineille.
 
-## Toiminnallisuudet 18.10.2020
+## Lopulliset toiminnallisuudet:
 
 * Käyttäjä voi rekisteröityä sivulle tunnuksella, joka ei ole jo varattu
+
 * Käyttäjä voi kirjautua olemassaolevalla tunnuksella
+
 * Käyttäjä näkee kymmenen suosituinta aihetta palkissa
+
 * Käyttäjä voi selata kaikkia aiheita
+
 * Sisäänkirjautunut käyttäjä voi nähdä profiilinsa
+
 * Sisäänkirjautunut käyttäjä voi lisätä tietoa profiiliinsa, ja muokata sitä
+
 * Sisäänkirjautunut käyttäjä voi liputtaa viestejä
+
 * Sisäänkirjautunut käyttäjä voi poistaa oman viestinsä
+
 * Sisäänkirjautunut käyttäjä voi muokata omaa viestiään
+
 * Sisäänkirjautunut käyttäjä voi lukea aihealueiden viestejä
+
 * Sisäänkirjautunut käyttäjä voi lisätä aihealueelle viestin
+
 * Sisäänkirjautunut käyttäjä voi ehdottaa uutta aihetta
 
-## Puuttuva toiminnallisuus 18.10.2020 (todo ennen loppupalautusta)
+* Moderaattori voi muokata kaikkia viestejä
 
-* Käyttäjä voi tallentaa suosikkiviestejään
-* Erilaiset käyttäjäroolit peruskäyttäjän lisäksi:
-    * Admin: voi poistaa tai lisätä viestin, aiheen tai käyttäjän,
-    sekä nähdä aihe-ehdotukset. Näkee lisäksi viestien liputusmäärät
-    * Moderaattori: voi poistaa viestejä, ja näkee viestien liputusmäärät
+* Ylläpitäjä voi poistaa minkä vain viestin
 
-## Lisädokumentaatio
+* Moderaattorit ja ylläpitäjät näkevät raportoidut viestit
 
-* [Välipalautuskommentit (SISÄLTÄÄ KYSYMYKSIÄ TARKASTAJALLE!!)](/docs/valipalautukset.md)
-* [Alkuperäinen määrittely (PÄIVITETÄÄN)](/docs/maarittelydoc.md)
+## Lisäkommentit:
+
+* Rakenne suunniteltu niin, että reittikerroksessa käsitellään oikeudet (onko sopiva käyttäjä) ja tietokantakerroksissa data (onko sopivaa dataa).
+
+* Admin- ja moderaattoritunnukset loppuarviointia varten labtoolin edellisen palautuksen kommenteissa! Heroku on kuitenkin julkinen, joten parempi rajoittaa näiden saatavuutta.
+
+* Aihe-ehdotuksia ei ikävä kyllä näe suoraan sivulta, tämä ominaisuus jäi "lähes valmiiksi", sillä tietokantayhteydet on jo tehty!
+
+* Sivun tulisi olla suhteellisen selkeä ilman näitä suurempia kuvailuja, sillä kaikesta tulee asianmukainen virheviesti, mikäli jotain sopimatonta tehdään.
